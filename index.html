@@ -111,7 +111,7 @@
         </div>
     </section>
 
-    <!-- word container -->
+    <!-- Word Container -->
     <section class="w-11/12 mx-auto">
         <div id="word-container" class="bg-gray-100 p-10 m-10 grid grid-cols-3 gap-5 rounded-lg">
             <div class="text-center col-span-full rounded-xl py-10 space-y-3">
@@ -121,6 +121,46 @@
         </div>
     </section>
 
+    <!-- Word Modal -->
+    <section>
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+        <dialog id="word_modal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <div id="details-container">
+                    <div class="space-y-5">
+                        <div>
+                            <h2 class="text-[36px] font-semibold">Eager ( <i class="fa-solid fa-microphone-lines"></i>
+                                :ইগার)</h2>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-medium mb-2">Meaning</p>
+                            <p class="text-2xl font-medium">আগ্রহী</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-medium mb-2">Example</p>
+                            <p class="text-2xl">The kids were eager to open their gifts.</p>
+                        </div>
+                        <div>
+                            <h2 class="font-medium text-2xl mb-2">Synonyms</h2>
+                            <span class="btn">Syn-1</span>
+                            <span class="btn">Syn-2</span>
+                            <span class="btn">Syn-3</span>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline btn-primary">Complete Learning</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+    </section>
     <script src="./script/index.js"></script>
 </body>
 
