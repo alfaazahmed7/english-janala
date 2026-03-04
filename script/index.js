@@ -4,6 +4,18 @@ const createElement = (arr) => {
     return (htmlElements.join(" "));
 };
 
+// loading spinner function
+const manageSpinner = (status) => {
+    if (status === true) {
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("word-container").classList.add("hidden");
+    }
+    else {
+        document.getElementById("word-container").classList.remove("hidden");
+        document.getElementById("spinner").classList.add("hidden");
+    }
+};
+
 // loadlesson function for learn vocab section
 const loadLessons = () => {
     fetch("https://openapi.programming-hero.com/api/levels/all")
@@ -19,6 +31,8 @@ const removeActice = () => {
 
 // loadLevelWord function for word container
 const loadLevelWord = (id) => {
+    manageSpinner(true);
+
     const url = `https://openapi.programming-hero.com/api/level/${id}`;
     fetch(url)
         .then(res => res.json())
@@ -81,7 +95,9 @@ const displayLevelWord = (words) => {
                 <h2 class="font-bangla text-[#292524] font-medium text-[34px]">নেক্সট Lesson এ যান</h2>
             </div>
         `;
-    }
+        manageSpinner(false);
+        return;
+    };
 
     words.forEach((word) => {
         const card = document.createElement("div");
@@ -98,6 +114,7 @@ const displayLevelWord = (words) => {
         `;
         wordContainer.append(card);
     });
+    manageSpinner(false);
 };
 
 // loadlesson function for learn vocab section
@@ -122,6 +139,22 @@ const displayLessons = (lessons) => {
     };
 };
 loadLessons();
+
+document.getElementById("btn-search")
+    .addEventListener("click", () => {
+        const input = document.getElementById("input-search");
+        const searchValue = input.value.trim().toLowerCase();
+
+        fetch("https://openapi.programming-hero.com/api/words/all")
+            .then((res) => res.json())
+            .then((data) => {
+                const allWords = data.data;
+                const filterWords = allWords.filter((word) =>
+                    word.word.toLowerCase().includes(searchValue)
+                );
+                displayLevelWord(filterWords);
+            });
+    });
 
 
 
