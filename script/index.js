@@ -6,9 +6,9 @@ const createElement = (arr) => {
 
 // pronounce word function
 function pronounceWord(word) {
-  const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = "en-EN"; // English
-  window.speechSynthesis.speak(utterance);
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = "en-EN"; // English
+    window.speechSynthesis.speak(utterance);
 };
 
 // loading spinner function
@@ -61,7 +61,7 @@ const loadWordDetail = async (id) => {
 
 // loadWordDetail function to show word(modal way)
 const displayWordDetails = (word) => {
-    console.log(word);
+
     const detailBox = document.getElementById("details-container");
     detailBox.innerHTML = `
     <div class="space-y-5">
@@ -162,6 +162,36 @@ document.getElementById("btn-search")
                 displayLevelWord(filterWords);
             });
     });
+
+// faq toggle
+const buttons = document.querySelectorAll(".accordion-btn");
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector(".icon");
+
+        // close all other accordions
+        document.querySelectorAll(".accordion-content")
+            .forEach(item => {
+                if (item !== content) {
+                    item.style.maxHeight = null;
+                    item.previousElementSibling.querySelector(".icon").textContent = "+";
+                }
+            });
+
+            // toggle current one
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.textContent = "+";
+            }
+            else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.textContent = "-";
+            }
+    });
+});
+
 
 
 
